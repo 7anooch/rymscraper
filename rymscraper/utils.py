@@ -81,6 +81,7 @@ def get_url_from_album_name(browser, name: str) -> str:
 
 def get_album_infos(soup: BeautifulSoup) -> dict:
     """Returns a dict containing infos from an album."""
+<<<<<<< HEAD
     album_title_text = soup.find("div", {"class": "album_title"}).text.split("\n")
     try:
         album_infos = {
@@ -90,6 +91,14 @@ def get_album_infos(soup: BeautifulSoup) -> dict:
     except Exception as e:
         print(f"Error in fetching album basic info: {e}")
         return {}
+=======
+    album_infos = {
+        "Name": soup.find("div", {"class": "album_title"}).text.split("\n")[0].strip(),
+        "Artist": soup.find("div", {"class": "album_title"})
+        .text.split("\n")[2]
+        .strip()[3:],
+    }
+>>>>>>> parent of a87ae48 (fixed utils.py)
 
     try:
         album_complementary_infos = [
